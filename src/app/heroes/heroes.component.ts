@@ -12,18 +12,28 @@ import { Component, OnInit } from '@angular/core';
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
 
+  /*
+    wird nicht mehr benötigt...
   selectedHero: Hero;
 
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
   }
+  */
 
   // by defining heroService as argument in the constructor, the service is injected
   constructor(private heroService: HeroService) { }
 
   getHeroes(): void {
-    //only applicable if synchronous data retrieval!! <=> would not work with asynchronous HTTP requests!
-    this.heroes = this.heroService.getHeroes();
+    /*
+      syncronous data retrieval:
+        this.heroes = this.heroService.getHeroes();
+
+      async calls with observables and http requests:
+        this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
+  */
+    this.heroService.getHeroes()
+      .subscribe(heroes => this.heroes = heroes);
 
   }
 

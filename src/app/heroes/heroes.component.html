@@ -1,17 +1,25 @@
 
 <h2>My Heroes</h2>
-<ul class="heroes">
-  <!-- *ngFor geht durch alle Heroes durch
-        click onSelect(hero) ist der Trigger um die Details eines Heroes zu öffnen
-        class.selected steuert die anders-artige Darstellung des gewählten Heroes gemäß dem .css file
-  -->
+<table>
+  <td>
+    <ul class="heroes">
+      <!-- *ngFor geht durch alle Heroes durch
+            click onSelect(hero) ist der Trigger um die Details eines Heroes zu öffnen
+            class.selected steuert die anders-artige Darstellung des gewählten Heroes gemäß dem .css file
+      -->
 
-  <li *ngFor="let hero of heroes"
-    [class.selected]="hero === selectedHero"
-    (click)="onSelect(hero)">
-    <span class="badge">{{hero.id}}</span> {{hero.name}}
-  </li>
-</ul>
-
-<!-- Übergabe des gewählten Hero's an die Hero-Detail Komponente zum Darstellen deren HTML -->
-<app-hero-detail [hero]="selectedHero"></app-hero-detail>
+      <li *ngFor="let hero of heroes">
+        <a routerLink="/detail/{{hero.id}}">
+          <span class="badge">{{hero.id}}</span> {{hero.name}}
+        </a>
+      </li>
+    </ul>
+  </td>
+  <td>
+    <!-- Übergabe des gewählten Hero's an die Hero-Detail Komponente zum Darstellen deren HTML
+        Stichwort: (one way) Property Binding [hero]="selectedHero"
+    <app-hero-detail [hero]="selectedHero"></app-hero-detail>
+    <=> entfällt mit der Einführung des Dashboards
+    -->
+  </td>
+</table>
