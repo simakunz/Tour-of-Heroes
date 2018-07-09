@@ -1,3 +1,4 @@
+import { HeroService } from './../hero.service';
 import { Hero } from './../hero';
 import { HEROES } from './../mock-heroes';
 import { Component, OnInit } from '@angular/core';
@@ -9,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  heroes = HEROES;
+  heroes: Hero[];
 
   selectedHero: Hero;
 
@@ -17,9 +18,17 @@ export class HeroesComponent implements OnInit {
     this.selectedHero = hero;
   }
 
-  constructor() { }
+  // by defining heroService as argument in the constructor, the service is injected
+  constructor(private heroService: HeroService) { }
+
+  getHeroes(): void {
+    //only applicable if synchronous data retrieval!! <=> would not work with asynchronous HTTP requests!
+    this.heroes = this.heroService.getHeroes();
+
+  }
 
   ngOnInit() {
+    this.getHeroes();
   }
 
 }
