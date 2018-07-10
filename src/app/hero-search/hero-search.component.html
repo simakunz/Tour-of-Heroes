@@ -1,0 +1,22 @@
+<div id="search-component">
+  <h4>Hero Search</h4>
+
+  <!-- Every time the user types in the textbox, the binding calls search()
+       with the textbox value, a "search term". The searchTerms becomes an
+       Observable emitting a steady stream of search terms.
+  -->
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+
+  <ul class="search-result">
+    <!--
+        next ngFor is iterating through heroes$ instead of heroes since heroes in this case
+        is an Observable, not an array <=> funktioniert nur in Zusammenhang mit Pipe und async!
+        weil ngFor an sich nix mit Observables anfangen kann
+    -->
+    <li *ngFor="let hero of heroes$ | async" >
+        <a routerLink="/detail/{{hero.id}}">
+          {{hero.name}}
+        </a>
+      </li>
+    </ul>
+</div>

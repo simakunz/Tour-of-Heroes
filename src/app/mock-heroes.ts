@@ -1,5 +1,11 @@
 import { Hero } from './hero';
 
+/******************************************************************************
+ *
+ *  CAN BE DELETED SINCE IT'S FUNCTION IS REPLACED WITH in-memory-data.service.ts
+ *
+******************************************************************************/
+
 export const HEROES: Hero[] = [
   { id: 11, name: 'Iron Man' },
   { id: 12, name: 'Captain America' },
